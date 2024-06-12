@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package wav;
+
+option go_package = "wav.serializer.v1;serializer";
+
+service Serializer {
+    rpc ReadFile (Input) returns (Output);
+}
+
+message Input {
+  string Path = 1; // Email of the user to login.
+}
+
+message Sample {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message Output {
+  int32 SampleLen = 1;
+  bool Stereo = 2;
+  int32 RateBySample = 3;
+  int32 BitPerSample = 4;
+  double Time = 5;
+  repeated Sample samples = 6;
+}
